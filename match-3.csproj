@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -282,7 +284,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\models\Player.cs" />
+    <Compile Include="Assets\models\AppLayer\GameEngine.cs" />
+    <Compile Include="Assets\models\AppLayer\LevelManager.cs" />
+    <Compile Include="Assets\models\DomainLayer\Boards\BoardDefault.cs" />
+    <Compile Include="Assets\models\DomainLayer\Cell.cs" />
+    <Compile Include="Assets\models\DomainLayer\CellState.cs" />
+    <Compile Include="Assets\models\DomainLayer\Grid.cs" />
+    <Compile Include="Assets\models\DomainLayer\Interfaces\ILevel.cs" />
+    <Compile Include="Assets\models\DomainLayer\Interfaces\IBoard.cs" />
+    <Compile Include="Assets\models\DomainLayer\Levels\Level_1-1.cs" />
+    <Compile Include="Assets\models\DomainLayer\Piece.cs" />
+    <Compile Include="Assets\models\DomainLayer\Player.cs" />
+    <Compile Include="Assets\models\InfrastructureLayer\Logger.cs" />
+    <Compile Include="Assets\models\InfrastructureLayer\Timer.cs" />
+    <Compile Include="Assets\models\UILayer\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
