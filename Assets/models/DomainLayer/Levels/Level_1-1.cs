@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using InfrastructureLayer;
+using UnityEngine.UI;
 
 namespace DomainLayer
 {
@@ -17,5 +18,13 @@ namespace DomainLayer
         public Image TitleImg { get; set; }
 
         public IBoard Board { get; private set; }
+
+        public Timer Timer
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+        }
     }
 }

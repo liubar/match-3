@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DomainLayer
+﻿namespace DomainLayer
 {
     class BoardDefault : IBoard
     {
+        Grid grid = new Grid(10, 10);
+        
         public Grid Grid
         {
-            get
-            {
-                return new Grid(10, 10);
-            }
+            get { return grid; }
         }
     }
 }

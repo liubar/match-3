@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using InfrastructureLayer;
+using UnityEngine.UI;
 
 namespace DomainLayer
 {
@@ -7,5 +8,6 @@ namespace DomainLayer
         int Number { get; }
         Image TitleImg { get; }
         IBoard Board { get; }
+        Timer Timer { get; }
     }
 }

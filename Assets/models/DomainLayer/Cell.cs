@@ -4,18 +4,13 @@ namespace DomainLayer
 {
     public class Cell : MonoBehaviour
     {
+        public CellState State = CellState.free;
+        
+        public void FillPiece()
+        {
+            Peice = new Piece(PieceService.GetRandomPiece(), gameObject.transform.position);
+        }
+
         public Piece Peice { get; set; }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

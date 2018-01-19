@@ -1,22 +1,18 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DomainLayer
 {
-    public class Piece : MonoBehaviour
+    public class Piece
     {
-        public PrefabUtility Prefab { get; set; }
-
-        // Use this for initialization
-        void Start()
+        public Piece(GameObject pieceObj, Vector3 position)
         {
+            Prefab = pieceObj;
+            Object.Instantiate(pieceObj, position, pieceObj.transform.rotation);
+
+            
 
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public GameObject Prefab { get; private set; }
     }
 }
