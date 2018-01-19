@@ -1,4 +1,5 @@
 ﻿using InfrastructureLayer;
+using ModelsMatch3.interfaces;
 using UnityEngine.UI;
 
 namespace DomainLayer
@@ -7,7 +8,7 @@ namespace DomainLayer
     {
         public Level_1_1()
         {
-            Board = new BoardDefault();
+            //Board = new BoardDefault();
         }
 
         public int Number
@@ -19,7 +20,7 @@ namespace DomainLayer
 
         public IBoard Board { get; private set; }
 
-        public Timer Timer
+        public ITimer Timer
         {
             get
             {

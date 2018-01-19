@@ -1,5 +1,6 @@
 ﻿using System;
 using DomainLayer;
+using ModelsMatch3.interfaces;
 using UnityEngine;
 
 namespace AppLayer
@@ -20,7 +21,7 @@ namespace AppLayer
         void Start()
         {
             PieceService.PiecesObjects = Resources.LoadAll<GameObject>("Prefabs/Pieces/");
-            board = new BoardDefault();
+            board = new BoardDefault(10, 10);
         }
 
         // Update is called once per frame

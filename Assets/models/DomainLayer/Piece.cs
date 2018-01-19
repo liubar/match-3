@@ -1,18 +1,31 @@
-﻿using UnityEngine;
+﻿using ModelsMatch3;
+using UnityEngine;
 
 namespace DomainLayer
 {
-    public class Piece
+    public class Piece : MonoBehaviour, IPiece
     {
-        public Piece(GameObject pieceObj, Vector3 position)
+        public PieceType type;
+
+        public PieceType Type
         {
-            Prefab = pieceObj;
-            Object.Instantiate(pieceObj, position, pieceObj.transform.rotation);
-
-            
-
+            get { return type; }
+            set { type = value; }
         }
 
-        public GameObject Prefab { get; private set; }
+        public int CompareTo(IPiece other)
+        {
+            return Type.CompareTo(other.Type);
+        }
+
+        public void Destroy()
+        {
+            Destroy(this.gameObject);
+        }
+        
+        //void OnMouseDown()
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 }

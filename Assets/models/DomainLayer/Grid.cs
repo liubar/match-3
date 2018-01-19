@@ -1,37 +1,34 @@
 ﻿using System;
-using UnityEngine;
+using ModelsMatch3.interfaces;
 
 namespace DomainLayer
 {
-    public class Grid
+    public class Grid : IGrid
     {
-        private Cell[,] grid;
+        private ICell[][] grid;
 
-        public Grid(int x, int y)
+        public ICell[][] Cells
         {
-            if (x < 5 || y < 5)
-            {
-                var errMask = "The minimum size of the grid should be 5 x 5. x = {0}, y = {1}";
-                throw new ArgumentException(string.Format(errMask, x, y));
-            }
-
-            InitialGrid(x, y);
+            get { return grid; }
+            set { grid = value; }
         }
 
-        void InitialGrid(int x, int y)
+        public void CheckMatch()
         {
-            grid = new Cell[x, y];
-            var cellPrefab = Resources.Load<GameObject>("Prefabs/Cell");
+            var a = "";
 
-            for (int i = 0; i < x; i++)
-            {
-                for (int j = 0; j < y; j++)
-                {
-                    var obj = UnityEngine.Object.Instantiate(cellPrefab, new Vector3(i, j, 0), Quaternion.identity);
-                    grid[i, j] = obj.GetComponent(typeof(Cell)) as Cell;
-                    grid[i, j].FillPiece();
-                }
-            }
+
+
+            var b = Cells[0][0];
+
+
+
+
+        }
+
+        public bool TrySwapCells(ICell cell1, ICell cell2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

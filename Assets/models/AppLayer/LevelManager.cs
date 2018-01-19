@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DomainLayer;
+using ModelsMatch3.interfaces;
 
 namespace AppLayer
 {
@@ -7,11 +8,6 @@ namespace AppLayer
     {
         private Dictionary<Player, List<ILevel>> players = new Dictionary<Player, List<ILevel>>();
         
-        public LevelManager()
-        {
-            
-        }
-
         public ILevel CurrentLevel { get; set; }
         public Player CurrentPlayer { get; set; }
 

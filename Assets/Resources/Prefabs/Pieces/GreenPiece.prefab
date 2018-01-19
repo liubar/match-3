@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65858681022773600}
   - component: {fileID: 23579749352490060}
   - component: {fileID: 54348386286187244}
+  - component: {fileID: 114105642409831312}
   m_Layer: 0
   m_Name: GreenPiece
   m_TagString: Untagged
@@ -111,3 +112,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114105642409831312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747580485871736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de5960a8d5eb7c4cb296b47631dc271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

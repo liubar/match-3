@@ -289,10 +289,7 @@
     <Compile Include="Assets\models\AppLayer\LevelManager.cs" />
     <Compile Include="Assets\models\DomainLayer\Boards\BoardDefault.cs" />
     <Compile Include="Assets\models\DomainLayer\Cell.cs" />
-    <Compile Include="Assets\models\DomainLayer\CellState.cs" />
     <Compile Include="Assets\models\DomainLayer\Grid.cs" />
-    <Compile Include="Assets\models\DomainLayer\Interfaces\IBoard.cs" />
-    <Compile Include="Assets\models\DomainLayer\Interfaces\ILevel.cs" />
     <Compile Include="Assets\models\DomainLayer\Levels\Level_1-1.cs" />
     <Compile Include="Assets\models\DomainLayer\Piece.cs" />
     <Compile Include="Assets\models\DomainLayer\PieceService.cs" />
