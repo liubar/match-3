@@ -11,12 +11,21 @@ namespace Domain
 
         public IPiece Piece { get; set; }
 
+        public IGridPosition GridPosition { get; set; }
+
         public CellState CellState
         {
             get { return state; }
             set { state = value; }
         }
-        
+
+        public IPieceProvider PieceProvider { get; set; }
+
+        public bool ContainsPiece(ICell piece)
+        {
+            return Piece.Equals(piece.Piece);
+        }
+
         void OnMouseDown()
         {
             lastMousePosition = Input.mousePosition;
@@ -26,31 +35,45 @@ namespace Domain
         void OnMouseDrag()
         {
             Vector3 distance = Input.mousePosition - lastMousePosition;
-
             if(!dragging || dragging && distance.magnitude < 30) return;
-            
-            if (colider == null) return;
-            var gObj = colider.gameObject;
 
-            //gObj.GetComponent<Rigidbody>().AddForce(distance, ForceMode.Impulse);
-
-            if (gObj == null) return;
-            var piece = gObj.GetComponent<IPiece>();
-
+            var piece = GetPiece();
             if (piece == null) return;
-            piece.Clear();
+
+
+
+
+            PieceProvider.Move(this, distance);
+
+            //piece.Clear();
+
+
+
 
             dragging = false;
         }
 
+        void OnTriggerEnter(Collider other)
+        {
+            colider = other;
+            Piece = GetPiece();
+        }
+
+        /*
         void OnTriggerStay(Collider other)
         {
             colider = other;
         }
-        
-        public bool ContainsPiece(ICell piece)
+        */
+        private IPiece GetPiece()
         {
-            return Piece.Equals(piece.Piece);
+            if (colider == null) return null;
+            var gObj = colider.gameObject;
+
+            //gObj.GetComponent<Rigidbody>().AddForce(distance, ForceMode.Impulse);
+
+            if (gObj == null) return null;
+            return gObj.GetComponent<IPiece>();
         }
     }
 }

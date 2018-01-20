@@ -6,7 +6,7 @@ namespace Domain
     {
         public PieceType type;
 
-        private bool _isDestroyet = false;
+        private bool _isDisposed = false;
 
         public PieceType Type
         {
@@ -16,12 +16,12 @@ namespace Domain
         public void Clear()
         {
             Destroy(gameObject);
-            _isDestroyet = true;
+            _isDisposed = true;
         }
 
         public bool Equals(IPiece other)
         {
-            if (other == null || _isDestroyet)
+            if (other == null || _isDisposed)
                 return false;
 
             return type == other.Type;

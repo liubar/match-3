@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -289,8 +291,10 @@
     <Compile Include="Assets\interfaces\App\IPieceGenerator.cs" />
     <Compile Include="Assets\interfaces\Domain\ICell.cs" />
     <Compile Include="Assets\interfaces\Domain\IGrid.cs" />
+    <Compile Include="Assets\interfaces\Domain\IGridPosition.cs" />
     <Compile Include="Assets\interfaces\Domain\IMatch.cs" />
     <Compile Include="Assets\interfaces\Domain\IPiece.cs" />
+    <Compile Include="Assets\interfaces\Domain\IPieceProvider.cs" />
     <Compile Include="Assets\interfaces\Infrastructure\ITimer.cs" />
     <Compile Include="Assets\models\App\EasyGridBuilder.cs" />
     <Compile Include="Assets\models\App\GameEngine.cs" />
@@ -302,6 +306,8 @@
     <Compile Include="Assets\models\Domain\Cell.cs" />
     <Compile Include="Assets\models\Domain\CellState.cs" />
     <Compile Include="Assets\models\Domain\Grid.cs" />
+    <Compile Include="Assets\models\Domain\GridPosition.cs" />
+    <Compile Include="Assets\models\Domain\PieceProvider.cs" />
     <Compile Include="Assets\models\Domain\Levels\Level_1-1.cs" />
     <Compile Include="Assets\models\Domain\Match.cs" />
     <Compile Include="Assets\models\Domain\Piece.cs" />

@@ -20,7 +20,9 @@ namespace App
         {
             IGridBuilder builder = new EasyGridBuilder();
             var generator = new PieceGenerator();
-            var initializer = new GridInitializer(builder, generator);
+            var pieceProvider = new PieceProvider();
+
+            var initializer = new GridInitializer(builder, generator, pieceProvider);
             initializer.Build();
 
             board = new BoardDefault(builder.GetGridResult());
