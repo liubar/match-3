@@ -1,16 +1,13 @@
-﻿using App;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UI
+namespace Infrastructure
 {
-    public class MainMenu : MonoBehaviour
+    public class Logger : MonoBehaviour
     {
-        private LevelManager levelManager;
-
         // Use this for initialization
         void Start()
         {
-            levelManager = new LevelManager();
+
         }
 
         // Update is called once per frame

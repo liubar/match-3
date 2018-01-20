@@ -280,22 +280,34 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/userrr/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="ModelsMatch3">
-      <HintPath>Assets/ModelsMatch3.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\models\AppLayer\GameEngine.cs" />
-    <Compile Include="Assets\models\AppLayer\LevelManager.cs" />
-    <Compile Include="Assets\models\DomainLayer\Boards\BoardDefault.cs" />
-    <Compile Include="Assets\models\DomainLayer\Cell.cs" />
-    <Compile Include="Assets\models\DomainLayer\Grid.cs" />
-    <Compile Include="Assets\models\DomainLayer\Levels\Level_1-1.cs" />
-    <Compile Include="Assets\models\DomainLayer\Piece.cs" />
-    <Compile Include="Assets\models\DomainLayer\PieceService.cs" />
-    <Compile Include="Assets\models\DomainLayer\Player.cs" />
-    <Compile Include="Assets\models\InfrastructureLayer\Logger.cs" />
-    <Compile Include="Assets\models\InfrastructureLayer\Timer.cs" />
+    <Compile Include="Assets\interfaces\App\IBoard.cs" />
+    <Compile Include="Assets\interfaces\App\IGridBuilder.cs" />
+    <Compile Include="Assets\interfaces\App\ILevel.cs" />
+    <Compile Include="Assets\interfaces\App\IMatchChecker.cs" />
+    <Compile Include="Assets\interfaces\App\IPieceGenerator.cs" />
+    <Compile Include="Assets\interfaces\Domain\ICell.cs" />
+    <Compile Include="Assets\interfaces\Domain\IGrid.cs" />
+    <Compile Include="Assets\interfaces\Domain\IMatch.cs" />
+    <Compile Include="Assets\interfaces\Domain\IPiece.cs" />
+    <Compile Include="Assets\interfaces\Infrastructure\ITimer.cs" />
+    <Compile Include="Assets\models\App\EasyGridBuilder.cs" />
+    <Compile Include="Assets\models\App\GameEngine.cs" />
+    <Compile Include="Assets\models\App\GridInitializer.cs" />
+    <Compile Include="Assets\models\App\LevelManager.cs" />
+    <Compile Include="Assets\models\App\MatchChecker.cs" />
+    <Compile Include="Assets\models\App\PieceGenerator.cs" />
+    <Compile Include="Assets\models\Domain\Boards\BoardDefault.cs" />
+    <Compile Include="Assets\models\Domain\Cell.cs" />
+    <Compile Include="Assets\models\Domain\CellState.cs" />
+    <Compile Include="Assets\models\Domain\Grid.cs" />
+    <Compile Include="Assets\models\Domain\Levels\Level_1-1.cs" />
+    <Compile Include="Assets\models\Domain\Piece.cs" />
+    <Compile Include="Assets\models\Domain\PieceType.cs" />
+    <Compile Include="Assets\models\Domain\Player.cs" />
+    <Compile Include="Assets\models\Infrastructure\Logger.cs" />
+    <Compile Include="Assets\models\Infrastructure\Timer.cs" />
     <Compile Include="Assets\models\UILayer\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
