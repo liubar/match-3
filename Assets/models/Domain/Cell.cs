@@ -9,11 +9,6 @@ namespace Domain
         private bool dragging;
         private Vector3 lastMousePosition;
 
-        public int CompareTo(ICell other)
-        {
-            return Piece.CompareTo(other.Piece);
-        }
-
         public IPiece Piece { get; set; }
 
         public CellState CellState
@@ -51,6 +46,11 @@ namespace Domain
         void OnTriggerStay(Collider other)
         {
             colider = other;
+        }
+        
+        public bool ContainsPiece(ICell piece)
+        {
+            return Piece.Equals(piece.Piece);
         }
     }
 }

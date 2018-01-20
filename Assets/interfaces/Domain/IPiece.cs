@@ -2,9 +2,9 @@
 
 namespace Domain
 {
-    public interface IPiece : IComparable<IPiece>
+    public interface IPiece : IEquatable<IPiece>
     {
-        PieceType Type { get; set; }
+        PieceType Type { get; }
         void Clear();
     }
 }

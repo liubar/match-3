@@ -5,7 +5,7 @@ namespace App
 {
     public class GameEngine : MonoBehaviour
     {
-        public static readonly Vector3 START_POINT = new Vector3(0, 0, 0);
+        public static Vector3 START_POINT = new Vector3(0, 0, 0);
 
         private LevelManager levelManager;
         private IBoard board;
@@ -26,12 +26,18 @@ namespace App
             board = new BoardDefault(builder.GetGridResult());
 
 
+            
+
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            
+            var checker = new MatchChecker();
+            var result = checker.CheckMatch(board.grid);
+            var asd = checker.CheckChanceMacth(board.grid);
+            
         }
     }
 }

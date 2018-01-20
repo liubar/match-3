@@ -303,6 +303,7 @@
     <Compile Include="Assets\models\Domain\CellState.cs" />
     <Compile Include="Assets\models\Domain\Grid.cs" />
     <Compile Include="Assets\models\Domain\Levels\Level_1-1.cs" />
+    <Compile Include="Assets\models\Domain\Match.cs" />
     <Compile Include="Assets\models\Domain\Piece.cs" />
     <Compile Include="Assets\models\Domain\PieceType.cs" />
     <Compile Include="Assets\models\Domain\Player.cs" />
