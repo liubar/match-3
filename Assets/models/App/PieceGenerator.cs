@@ -6,7 +6,7 @@ namespace App
     public class PieceGenerator : IPieceGenerator
     {
         private string _prefabsPath = "Prefabs/Pieces/";
-        private GameObject[] _piecesObjects;
+        private readonly GameObject[] _piecesObjects;
 
         public PieceGenerator()
         {
@@ -15,35 +15,34 @@ namespace App
 
         public void GenerateGrid(IGrid grid)
         {
-            for (int x = 0; x < grid.Cells.Length; x++)
+            for (int x = 0; x < grid.GridCells.Length; x++)
             {
-                for (int y = 0; y < grid.Cells.LongLength; y++)
+                for (int y = 0; y < grid.GridCells.LongLength; y++)
                 {
-                    FillCell(grid.Cells[x][y]);
+                    FillCell(grid.GridCells[x][y]);
                 }
             }
         }
 
-        public void GeneratePiece(ICell cell)
+        public void GeneratePiece(ICell gridCell)
         {
-            FillCell(cell);
+            FillCell(gridCell);
         }
 
-        private void FillCell(ICell cell)
+        private void FillCell(ICell gridCell)
         {
-            if (cell.Piece != null)
+            if (gridCell.Piece != null)
             {
-                cell.Piece.Clear();
+                gridCell.Piece.Clear();
             }
 
-            var position = ((MonoBehaviour)cell).GetComponent<Transform>().position;
-            var instPiece = UnityEngine.Object.Instantiate(GetRandomPiece(), position, Quaternion.identity);
-            cell.Piece = instPiece.GetComponent(typeof(IPiece)) as IPiece;
+            var position = ((MonoBehaviour)gridCell).GetComponent<Transform>().position;
+            Object.Instantiate(GetRandomPiece(), position, Quaternion.identity);
         }
 
         private GameObject GetRandomPiece()
         {
-            var index = UnityEngine.Random.Range(0, _piecesObjects.Length);
+            var index = Random.Range(0, _piecesObjects.Length);
             return _piecesObjects[index];
         }
     }

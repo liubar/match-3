@@ -2,12 +2,13 @@
 
 namespace Domain
 {
-    public interface IMatch : IEnumerable<ICell>
+    public interface IMatch : IEnumerable<IGridCell>
     {
-        void AddCell(ICell cell);
-        void AddRange(IEnumerable<ICell> range);
-        bool Contains(ICell cell);
-        bool AnyContains(IEnumerable<ICell> range);
+        void AddCell(IGridCell gridCell);
+        void AddRange(IEnumerable<IGridCell> range);
+        bool Contains(IGridCell gridCell);
+        bool AnyContains(IEnumerable<IGridCell> range);
+        List<IGridCell> GetCells();
         int GetScore();
     }
 }

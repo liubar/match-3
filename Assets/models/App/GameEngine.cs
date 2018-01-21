@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using System.Linq;
+using Domain;
 using UnityEngine;
 
 namespace App
@@ -38,6 +39,7 @@ namespace App
             
             var checker = new MatchChecker();
             var result = checker.CheckMatch(board.grid);
+            var dsa = result.Select(el => el.GetCells());
             var asd = checker.CheckChanceMacth(board.grid);
             
         }

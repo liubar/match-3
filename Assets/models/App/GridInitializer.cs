@@ -20,6 +20,7 @@ namespace App
             _builder.LoadPrefabs();
             _builder.InitialGrid(10, 10, _pieceProvider);
             _builder.FillingGrid(_generator);
+            _builder.GenerateSpawnCells(_generator);
         }
     }
 }

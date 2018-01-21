@@ -5,6 +5,6 @@ namespace App
     public interface IPieceGenerator
     {
         void GenerateGrid(IGrid grid);
-        void GeneratePiece(ICell cell);
+        void GeneratePiece(ICell gridCell);
     }
 }

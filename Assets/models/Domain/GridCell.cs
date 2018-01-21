@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class Cell : MonoBehaviour, IGridCell
+    public class GridCell : MonoBehaviour, IGridCell
     {
         private CellState state = CellState.free;
         private Collider colider;

@@ -6,31 +6,38 @@ namespace Domain
     {
         public IGrid Grid { get; set; }
 
-        public void Move(ICell cell, Vector3 vector)
+        public void DeletePiece(IGridCell gridCell)
         {
+            gridCell.Piece.Clear();
+        }
+
+        public void Move(IGridCell gridCell, Vector3 vector)
+        {
+            IGridCell secondGridCell;
+
             if (Mathf.Abs(vector.x) > Mathf.Abs(vector.y))
             {
                 if (vector.x < 0)
                 {
                     //direction left
-                    if (cell.GridPosition.X == 0)
+                    if (gridCell.GridPosition.X == 0)
                     {
-                        MovementRestricted(cell);
+                        MovementRestricted(gridCell);
                         return;
                     }
 
-                    Swap(cell, Grid.Cells[cell.GridPosition.X - 1][cell.GridPosition.Y]);
+                    secondGridCell = Grid.GridCells[gridCell.GridPosition.X - 1][gridCell.GridPosition.Y];
                 }
                 else
                 {
                     //direction right
-                    if (cell.GridPosition.X == Grid.Cells.Length - 1)
+                    if (gridCell.GridPosition.X == Grid.GridCells.Length - 1)
                     {
-                        MovementRestricted(cell);
+                        MovementRestricted(gridCell);
                         return;
                     }
 
-                    Swap(cell, Grid.Cells[cell.GridPosition.X + 1][cell.GridPosition.Y]);
+                    secondGridCell = Grid.GridCells[gridCell.GridPosition.X + 1][gridCell.GridPosition.Y];
                 }
             }
             else
@@ -38,41 +45,46 @@ namespace Domain
                 if (vector.y < 0)
                 {
                     //direction bottom
-                    if (cell.GridPosition.Y == 0)
+                    if (gridCell.GridPosition.Y == 0)
                     {
-                        MovementRestricted(cell);
+                        MovementRestricted(gridCell);
                         return;
                     }
 
-                    Swap(cell, Grid.Cells[cell.GridPosition.X][cell.GridPosition.Y - 1]);
+                    secondGridCell = Grid.GridCells[gridCell.GridPosition.X][gridCell.GridPosition.Y - 1];
                 }
                 else
                 {
                     //direction top
-                    if (cell.GridPosition.Y == Grid.Cells.LongLength - 1)
+                    if (gridCell.GridPosition.Y == Grid.GridCells.LongLength - 1)
                     {
-                        MovementRestricted(cell);
+                        MovementRestricted(gridCell);
                         return;
                     }
 
-                    Swap(cell, Grid.Cells[cell.GridPosition.X][cell.GridPosition.Y + 1]);
+                    secondGridCell = Grid.GridCells[gridCell.GridPosition.X][gridCell.GridPosition.Y + 1];
                 }
             }
+
+            Swap(gridCell, secondGridCell);
         }
 
-        private void MovementRestricted(ICell cell)
+        private void MovementRestricted(IGridCell gridCell)
         {
-
+            ((MonoBehaviour)gridCell.Piece).GetComponent<Animator>().Play("Alarm");
         }
 
-        private void Swap(ICell firstCell, ICell SecondCell)
+        private void Swap(IGridCell firstGridCell, IGridCell secondGridCell)
         {
-            
-            var p = ((MonoBehaviour)firstCell.Piece);
-            p.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
-            p.GetComponent<Animator>().Play("SwapBackTop");
-            
+            if(firstGridCell.Piece == null || secondGridCell.Piece == null)
+                return;
 
+            var f = ((MonoBehaviour) firstGridCell.Piece).GetComponent<Transform>();
+            var s = ((MonoBehaviour) secondGridCell.Piece).GetComponent<Transform>();
+            
+            var temp = f.position;
+            f.position = s.position;
+            s.position = temp;
         }
     }
 }

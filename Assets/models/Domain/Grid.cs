@@ -4,9 +4,9 @@ namespace Domain
 {
     public class Grid : IGrid
     {
-        private ICell[][] grid;
+        private IGridCell[][] grid;
 
-        public ICell[][] Cells
+        public IGridCell[][] GridCells
         {
             get { return grid; }
             set { grid = value; }
@@ -18,14 +18,14 @@ namespace Domain
 
 
 
-            var b = Cells[0][0];
+            var b = GridCells[0][0];
 
 
 
 
         }
 
-        public bool TrySwapCells(ICell cell1, ICell cell2)
+        public bool TrySwapCells(IGridCell cell1, IGridCell cell2)
         {
             throw new NotImplementedException();
         }

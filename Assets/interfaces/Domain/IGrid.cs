@@ -2,9 +2,9 @@
 {
     public interface IGrid
     {
-        ICell[][] Cells { get; set; }
+        IGridCell[][] GridCells { get; set; }
 
-        bool TrySwapCells(ICell cell1, ICell cell2);
+        bool TrySwapCells(IGridCell cell1, IGridCell cell2);
         void CheckMatch();
     }
 }

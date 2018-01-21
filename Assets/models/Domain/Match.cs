@@ -5,30 +5,30 @@ namespace Domain
 {
     public class Match : IMatch
     {
-        List<ICell> cells = new List<ICell>();
+        List<IGridCell> _cells = new List<IGridCell>();
 
-        public void AddCell(ICell cell)
+        public void AddCell(IGridCell gridCell)
         {
-            cells.Add(cell);
+            _cells.Add(gridCell);
         }
 
-        public void AddRange(IEnumerable<ICell> range)
+        public void AddRange(IEnumerable<IGridCell> range)
         {
             foreach (var cell in range)
             {
-                if(cells.Contains(cell))
+                if(_cells.Contains(cell))
                     continue;
 
-                cells.Add(cell);
+                _cells.Add(cell);
             }
         }
 
-        public bool Contains(ICell cell)
+        public bool Contains(IGridCell gridCell)
         {
-            return cells.Contains(cell);
+            return _cells.Contains(gridCell);
         }
 
-        public bool AnyContains(IEnumerable<ICell> range)
+        public bool AnyContains(IEnumerable<IGridCell> range)
         {
             foreach (var cell in range)
             {
@@ -41,20 +41,25 @@ namespace Domain
             return false;
         }
 
+        public List<IGridCell> GetCells()
+        {
+            return _cells;
+        }
+
         public int GetScore()
         {
             //1 piece = 100 scores
-            return cells.Count * 100;
+            return _cells.Count * 100;
         }
 
-        public IEnumerator<ICell> GetEnumerator()
+        public IEnumerator<IGridCell> GetEnumerator()
         {
-            return cells.GetEnumerator();
+            return _cells.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return cells.GetEnumerator();
+            return _cells.GetEnumerator();
         }
     }
 }

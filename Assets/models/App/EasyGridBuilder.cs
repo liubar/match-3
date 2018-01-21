@@ -7,12 +7,15 @@ namespace App
     public class EasyGridBuilder : IGridBuilder
     {
         private string _cellPath = "Prefabs/Cell";
+        private string _spawnCellPath = "Prefabs/SpawnCell";
         private GameObject _cellPrefab;
+        private GameObject _spawnCellPrefab;
         private IGrid _grid;
 
         public void LoadPrefabs()
         {
             _cellPrefab = Resources.Load<GameObject>(_cellPath);
+            _spawnCellPrefab = Resources.Load<GameObject>(_spawnCellPath);
         }
 
         public void InitialGrid(int x, int y, IPieceProvider pieceProvider)
@@ -26,11 +29,11 @@ namespace App
                 throw new ArgumentException(string.Format(errMask, x, y));
             }
 
-            _grid.Cells = new ICell[x][];
+            _grid.GridCells = new IGridCell[x][];
 
             for (int i = 0; i < x; i++)
             {
-                _grid.Cells[i] = new ICell[y];
+                _grid.GridCells[i] = new IGridCell[y];
 
                 for (int j = 0; j < y; j++)
                 {
@@ -38,10 +41,10 @@ namespace App
                                                GameEngine.START_POINT.y + j,
                                                GameEngine.START_POINT.z + 0);
                     var instance = UnityEngine.Object.Instantiate(_cellPrefab, position, Quaternion.identity);
-
-                    _grid.Cells[i][j] = instance.GetComponent(typeof(ICell)) as ICell;
-                    _grid.Cells[i][j].GridPosition = new GridPosition(i, j);
-                    _grid.Cells[i][j].PieceProvider = pieceProvider;
+                    
+                    _grid.GridCells[i][j] = instance.GetComponent(typeof(IGridCell)) as IGridCell;
+                    _grid.GridCells[i][j].GridPosition = new GridPosition(i, j);
+                    _grid.GridCells[i][j].PieceProvider = pieceProvider;
                 }
             }
         }
@@ -49,6 +52,20 @@ namespace App
         public void FillingGrid(IPieceGenerator generator)
         {
             generator.GenerateGrid(_grid);
+        }
+
+        public void GenerateSpawnCells(IPieceGenerator generator)
+        {
+            for (int i = 0; i < _grid.GridCells.Length; i++)
+            {
+                var pos = new Vector3(GameEngine.START_POINT.x + i,
+                    GameEngine.START_POINT.y + _grid.GridCells.LongLength,
+                    GameEngine.START_POINT.z + 0);
+                var spawnInstantiate = UnityEngine.Object.Instantiate(_spawnCellPrefab, pos, Quaternion.identity);
+                var spawnCell = spawnInstantiate.GetComponent(typeof(ISpawnCell)) as ISpawnCell;
+                spawnCell.UpperCell = _grid.GridCells[i][_grid.GridCells.LongLength - 1];
+                spawnCell.PieceGenerator = generator;
+            }
         }
 
         public IGrid GetGridResult()

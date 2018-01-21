@@ -43,7 +43,7 @@ namespace App
         */
         public bool CheckChanceMacth(IGrid grid)
         {
-            var arr = grid.Cells;
+            var arr = grid.GridCells;
 
             for (int x = 1; x < arr.Length - 1; x++)
             {
@@ -64,10 +64,10 @@ namespace App
             return false;
         }
 
-        List<ICell[]> CheckColumns(IGrid grid)
+        List<IGridCell[]> CheckColumns(IGrid grid)
         {
-            var arr = grid.Cells;
-            var result = new List<ICell[]>();
+            var arr = grid.GridCells;
+            var result = new List<IGridCell[]>();
 
             for (int y = 0; y < arr.Length; y++)
             {
@@ -83,10 +83,10 @@ namespace App
             return result;
         }
 
-        List<ICell[]> CheckRows(IGrid grid)
+        List<IGridCell[]> CheckRows(IGrid grid)
         {
-            var arr = grid.Cells;
-            var result = new List<ICell[]>();
+            var arr = grid.GridCells;
+            var result = new List<IGridCell[]>();
 
             for (int x = 0; x < arr.Length; x++)
             {
