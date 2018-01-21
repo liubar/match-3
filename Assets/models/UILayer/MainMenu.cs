@@ -5,12 +5,12 @@ namespace UI
 {
     public class MainMenu : MonoBehaviour
     {
-        private LevelManager levelManager;
+        //private LevelManager levelManager;
 
         // Use this for initialization
         void Start()
         {
-            levelManager = new LevelManager();
+            //levelManager = new LevelManager();
         }
 
         // Update is called once per frame

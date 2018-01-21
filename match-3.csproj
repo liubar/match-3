@@ -296,7 +296,6 @@
     <Compile Include="Assets\interfaces\Domain\IGridPosition.cs" />
     <Compile Include="Assets\interfaces\Domain\IMatch.cs" />
     <Compile Include="Assets\interfaces\Domain\IPiece.cs" />
-    <Compile Include="Assets\interfaces\Domain\IPieceProvider.cs" />
     <Compile Include="Assets\interfaces\Infrastructure\ITimer.cs" />
     <Compile Include="Assets\models\App\EasyGridBuilder.cs" />
     <Compile Include="Assets\models\App\GameEngine.cs" />
@@ -306,21 +305,31 @@
     <Compile Include="Assets\models\App\PieceGenerator.cs" />
     <Compile Include="Assets\models\App\SpawnCell.cs" />
     <Compile Include="Assets\models\Domain\Boards\BoardDefault.cs" />
-    <Compile Include="Assets\models\Domain\Cell.cs" />
     <Compile Include="Assets\models\Domain\CellState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\CheckChanceMacthState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\CheckMatchState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\GameContext.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\GenerationGridState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\MatchState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\StateGame.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\SwapCheckMatchState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\SwapState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\UndoSwapState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\WaitingFillGridState.cs" />
+    <Compile Include="Assets\models\Domain\GameStateMachine\WaitingState.cs" />
     <Compile Include="Assets\models\Domain\Grid.cs" />
     <Compile Include="Assets\models\Domain\GridCell.cs" />
     <Compile Include="Assets\models\Domain\GridPosition.cs" />
     <Compile Include="Assets\models\Domain\Levels\Level_1-1.cs" />
     <Compile Include="Assets\models\Domain\Match.cs" />
     <Compile Include="Assets\models\Domain\Piece.cs" />
-    <Compile Include="Assets\models\Domain\PieceProvider.cs" />
     <Compile Include="Assets\models\Domain\PieceType.cs" />
     <Compile Include="Assets\models\Domain\Player.cs" />
     <Compile Include="Assets\models\Infrastructure\Logger.cs" />
     <Compile Include="Assets\models\Infrastructure\Timer.cs" />
     <Compile Include="Assets\models\UILayer\MainMenu.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

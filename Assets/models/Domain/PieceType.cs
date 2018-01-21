@@ -5,6 +5,8 @@
         green,
         orange,
         red,
-        blue
+        blue,
+        black,
+        white
     }
 }

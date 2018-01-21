@@ -6,10 +6,8 @@ namespace Domain
     {
         IGrid _grid;
         
-        IGrid IBoard.grid
-        {
-            get { return _grid; }
-        }
+        IGrid IBoard.grid { get { return _grid; }}
+
         public BoardDefault(IGrid grid)
         {
             _grid = grid;

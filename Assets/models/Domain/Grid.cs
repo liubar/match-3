@@ -1,40 +1,30 @@
-﻿using System;
-
-namespace Domain
+﻿namespace Domain
 {
     public class Grid : IGrid
     {
-        private IGridCell[][] grid;
+        private IGridCell[][] _grid;
 
         public IGridCell[][] GridCells
         {
-            get { return grid; }
-            set { grid = value; }
+            get { return _grid; }
+            set { _grid = value; }
         }
 
-        public void CheckMatch()
+        public bool IsFull
         {
-            var a = "";
+            get
+            {
+                foreach (var cells in _grid)
+                {
+                    foreach (var cell in cells)
+                    {
+                        if (cell.Piece == null)
+                            return false;
+                    }
+                }
 
-
-
-            var b = GridCells[0][0];
-
-
-
-
-        }
-
-        public bool TrySwapCells(IGridCell cell1, IGridCell cell2)
-        {
-            throw new NotImplementedException();
+                return true;
+            }
         }
     }
-
-     
-
-    
-
-    
-
 }

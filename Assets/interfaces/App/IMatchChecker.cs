@@ -7,5 +7,6 @@ namespace App
     {
         IEnumerable<IMatch> CheckMatch(IGrid grid);
         bool CheckChanceMacth(IGrid grid);
+        bool CellContainsMatch(IGrid grid, IGridCell cell);
     }
 }

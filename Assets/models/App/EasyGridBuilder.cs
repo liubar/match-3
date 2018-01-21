@@ -18,10 +18,9 @@ namespace App
             _spawnCellPrefab = Resources.Load<GameObject>(_spawnCellPath);
         }
 
-        public void InitialGrid(int x, int y, IPieceProvider pieceProvider)
+        public void InitialGrid(int x, int y)
         {
             _grid = new Domain.Grid();
-            pieceProvider.Grid = _grid;
 
             if (x < 3 || y < 3)
             {
@@ -44,7 +43,6 @@ namespace App
                     
                     _grid.GridCells[i][j] = instance.GetComponent(typeof(IGridCell)) as IGridCell;
                     _grid.GridCells[i][j].GridPosition = new GridPosition(i, j);
-                    _grid.GridCells[i][j].PieceProvider = pieceProvider;
                 }
             }
         }

@@ -64,6 +64,21 @@ namespace App
             return false;
         }
 
+        public bool CellContainsMatch(IGrid grid, IGridCell cell)
+        {
+            var matchs = CheckMatch(grid);
+
+            foreach (var match in matchs)
+            {
+                if (match.Contains(cell))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         List<IGridCell[]> CheckColumns(IGrid grid)
         {
             var arr = grid.GridCells;

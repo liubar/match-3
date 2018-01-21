@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Domain;
+﻿using Domain;
 using UnityEngine;
 
 namespace App
@@ -8,40 +7,42 @@ namespace App
     {
         public static Vector3 START_POINT = new Vector3(0, 0, 0);
 
-        private LevelManager levelManager;
-        private IBoard board;
+        public Player player;
+        //private LevelManager levelManager;
+        private IBoard _board;
+        private IPieceGenerator _generator;
+        private IMatchChecker _matchChecker;
 
         void Awake()
         {
-            levelManager = new LevelManager();
+            player = new Player("User", 0, 0);
+            //levelManager = new LevelManager();
         }
 
         // Use this for initialization
         void Start()
         {
             IGridBuilder builder = new EasyGridBuilder();
-            var generator = new PieceGenerator();
-            var pieceProvider = new PieceProvider();
+            _generator = new PieceGenerator();
+            _matchChecker = new MatchChecker();
 
-            var initializer = new GridInitializer(builder, generator, pieceProvider);
+            var initializer = new GridInitializer(builder, _generator);
             initializer.Build();
-
-            board = new BoardDefault(builder.GetGridResult());
-
-
+            var grid = builder.GetGridResult();
+            _board = new BoardDefault(grid);
             
-
+            GameContext.Instance.Initialize(grid, _matchChecker, _generator, player);
+            GameContext.Instance.Handle();
         }
-
+        
         // Update is called once per frame
         void Update()
         {
-            
-            var checker = new MatchChecker();
-            var result = checker.CheckMatch(board.grid);
-            var dsa = result.Select(el => el.GetCells());
-            var asd = checker.CheckChanceMacth(board.grid);
-            
+            if (GameContext.Instance.State is WaitingState)
+                return;
+
+            GameContext.Instance.Handle();
         }
+        
     }
 }
