@@ -15,7 +15,9 @@ namespace Domain
         
         public void Clear()
         {
-            Destroy(gameObject);
+            if(!_isDisposed)
+                Destroy(gameObject);
+
             _isDisposed = true;
         }
 

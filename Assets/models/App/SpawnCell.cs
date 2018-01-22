@@ -9,7 +9,7 @@ namespace App
         public IGridCell UpperCell { get; set; }
         public IPieceGenerator PieceGenerator { get; set; }
         public IPiece Piece { get; set; }
-
+        
         private bool beingHandled = false;
 
         void Update()

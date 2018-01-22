@@ -18,7 +18,7 @@
                 {
                     foreach (var cell in cells)
                     {
-                        if (cell.Piece == null)
+                        if (cell.IsEmpty)
                             return false;
                     }
                 }

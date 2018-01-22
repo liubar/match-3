@@ -4,15 +4,18 @@ namespace Domain
 {
     public class SwapState : StateGame
     {
+        private IGridCell _cell;
+        private Vector3 _vector;
+
+        public SwapState(IGridCell cell, Vector3 vector)
+        {
+            _cell = cell;
+            _vector = vector;
+        }
+
         protected override void ChangeState(GameContext context, object[] additionalParams)
         {
-            if (additionalParams.Length != 2)
-                context.State = new WaitingState();
-
-            var cell = additionalParams[0] as IGridCell;
-            var vector = (Vector3)additionalParams[1];
-
-            Move(context, cell, vector);
+            Move(context, _cell, _vector);
             
         }
 
@@ -79,7 +82,7 @@ namespace Domain
             }
             else
             {
-                context.State = new WaitingState();
+                context.State = new WaitingFillGridState();
             }
         }
 
@@ -91,9 +94,8 @@ namespace Domain
 
         private bool TrySwap(IGridCell firstCell, IGridCell secondCell)
         {
-            if (secondCell.Piece == null)
+            if (secondCell.Piece == null || firstCell.Piece == null)
             {
-                MovementRestricted(firstCell);
                 return false;
             }
 
@@ -103,6 +105,7 @@ namespace Domain
             var temp = f.position;
             f.position = s.position;
             s.position = temp;
+            
             return true;
         }
     }

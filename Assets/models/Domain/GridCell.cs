@@ -10,6 +10,17 @@ namespace Domain
         private Vector3 lastMousePosition;
 
         public IGridPosition GridPosition { get; set; }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                if (Piece == null)
+                    return true;
+                
+                return false;
+            }
+        }
         public IPiece Piece
         {
             get
@@ -43,12 +54,9 @@ namespace Domain
             Vector3 distance = Input.mousePosition - lastMousePosition;
             if (!(GameContext.Instance.State is WaitingState)) return;
             if (!dragging || dragging && distance.magnitude < 20) return;
-
             if (Piece == null) return;
 
-            GameContext.Instance.State = new SwapState();
-            GameContext.Instance.Handle(new object[] { this, distance });
-
+            GameContext.Instance.State = new SwapState(this, distance);
             dragging = false;
         }
         
