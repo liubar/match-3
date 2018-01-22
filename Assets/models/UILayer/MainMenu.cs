@@ -1,5 +1,4 @@
-﻿using App;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UI
 {

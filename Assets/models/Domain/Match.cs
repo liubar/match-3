@@ -7,11 +7,19 @@ namespace Domain
     {
         List<IGridCell> _cells = new List<IGridCell>();
 
+        /// <summary>
+        ///     Add cell in match
+        /// </summary>
+        /// <param name="gridCell">Adding cell</param>
         public void AddCell(IGridCell gridCell)
         {
             _cells.Add(gridCell);
         }
 
+        /// <summary>
+        ///     Adding a cell array in match
+        /// </summary>
+        /// <param name="range">Adding array</param>
         public void AddRange(IEnumerable<IGridCell> range)
         {
             foreach (var cell in range)
@@ -23,11 +31,21 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        ///     Check the participation of the cell in the match
+        /// </summary>
+        /// <param name="gridCell">Verifiable cell</param>
+        /// <returns>true == 'The cell participates in the match'</returns>
         public bool Contains(IGridCell gridCell)
         {
             return _cells.Contains(gridCell);
         }
 
+        /// <summary>
+        ///     Check the participation of any element in the match
+        /// </summary>
+        /// <param name="range">Verifiable array</param>
+        /// <returns>true == 'The any cell participates in the match'</returns>
         public bool AnyContains(IEnumerable<IGridCell> range)
         {
             foreach (var cell in range)
@@ -40,12 +58,16 @@ namespace Domain
 
             return false;
         }
-
+        
         public List<IGridCell> GetCells()
         {
             return _cells;
         }
 
+        /// <summary>
+        ///     Counts and returns all points for matches
+        /// </summary>
+        /// <returns>Score</returns>
         public int GetScore()
         {
             //1 piece = 100 scores

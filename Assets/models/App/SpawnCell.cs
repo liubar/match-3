@@ -11,7 +11,7 @@ namespace App
         public IPiece Piece { get; set; }
         
         private bool beingHandled = false;
-
+        
         void Update()
         {
             if (!beingHandled)
@@ -20,6 +20,10 @@ namespace App
             }
         }
 
+        /// <summary>
+        ///     Creating chip
+        /// </summary>
+        /// <returns>waiting time</returns>
         private IEnumerator HandleIt()
         {
             beingHandled = true;
@@ -31,11 +35,6 @@ namespace App
             }
 
             beingHandled = false;
-        }
-
-        public bool ContainsPiece(IGridCell piece)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

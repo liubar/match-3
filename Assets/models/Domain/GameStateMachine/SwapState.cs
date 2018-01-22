@@ -19,6 +19,12 @@ namespace Domain
             
         }
 
+        /// <summary>
+        ///     Try move pieces
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cell">Moveable cell</param>
+        /// <param name="vector">Direction of displacement</param>
         private void Move(GameContext context, IGridCell cell, Vector3 vector)
         {
             IGridCell secondCell;
@@ -86,12 +92,22 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        ///     Animating the chips at an impossible displacement
+        /// </summary>
+        /// <param name="cell"></param>
         private void MovementRestricted(IGridCell cell)
         {
             ((MonoBehaviour)cell.Piece).GetComponent<Animator>().Play("Alarm");
             GameContext.Instance.State = new WaitingState();
         }
 
+        /// <summary>
+        ///     Trying to move pieces in cells
+        /// </summary>
+        /// <param name="firstCell">First cell</param>
+        /// <param name="secondCell">Second cell</param>
+        /// <returns>true == 'moving successfully'</returns>
         private bool TrySwap(IGridCell firstCell, IGridCell secondCell)
         {
             if (secondCell.Piece == null || firstCell.Piece == null)

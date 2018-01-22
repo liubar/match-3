@@ -5,6 +5,11 @@ namespace App
 {
     public class MatchChecker : IMatchChecker
     {
+        /// <summary>
+        ///     Check the entire grid on match
+        /// </summary>
+        /// <param name="grid">Verifiable mesh</param>
+        /// <returns>All found matchs</returns>
         public IEnumerable<IMatch> CheckMatch(IGrid grid)
         {
             var result = new List<Match>();
@@ -35,12 +40,17 @@ namespace App
             return result.ToArray();
         }
 
-        /*
-                        Check c equals *
-            * - *      * - -       - - -       - - *
-            - c -      - c -       - c -       - c -
-            - - -      * - -       * - *       - - *
-        */
+        /// <summary>
+        ///     Check on the possibility of a match with any course
+        /// 
+        ///     Check 'c' equals '*'
+        ///        * - *      * - -       - - -       - - *
+        ///        - c -      - c -       - c -       - c -
+        ///        - - -      * - -       * - *       - - *
+        /// 
+        /// </summary>
+        /// <param name="grid">Verifiable mesh</param>
+        /// <returns>true == Match possible</returns>
         public bool CheckChanceMacth(IGrid grid)
         {
             var arr = grid.GridCells;
@@ -64,6 +74,12 @@ namespace App
             return false;
         }
 
+        /// <summary>
+        ///     Check the participation of the cell in the match
+        /// </summary>
+        /// <param name="grid">The grid in which the checking cell is located</param>
+        /// <param name="cell">checking cell</param>
+        /// <returns>true == 'the cell participates in the match'</returns>
         public bool CellContainsMatch(IGrid grid, IGridCell cell)
         {
             var matchs = CheckMatch(grid);
@@ -79,6 +95,11 @@ namespace App
             return false;
         }
 
+        /// <summary>
+        ///     Finding all vertical matches
+        /// </summary>
+        /// <param name="grid">Verifiable mesh</param>
+        /// <returns>All cells participating in vertical matches</returns>
         List<IGridCell[]> CheckColumns(IGrid grid)
         {
             var arr = grid.GridCells;
@@ -98,6 +119,11 @@ namespace App
             return result;
         }
 
+        /// <summary>
+        ///     Finding all horizontal matches
+        /// </summary>
+        /// <param name="grid">Verifiable mesh</param>
+        /// <returns>All cells participating in horizontal matches</returns>
         List<IGridCell[]> CheckRows(IGrid grid)
         {
             var arr = grid.GridCells;

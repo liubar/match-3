@@ -10,6 +10,9 @@
             set { _grid = value; }
         }
 
+        /// <summary>
+        ///     Checks the fullness of all grid cells
+        /// </summary>
         public bool IsFull
         {
             get

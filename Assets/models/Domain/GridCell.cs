@@ -21,6 +21,7 @@ namespace Domain
                 return false;
             }
         }
+
         public IPiece Piece
         {
             get
@@ -29,12 +30,18 @@ namespace Domain
                 return colider.GetComponent<IPiece>();
             }
         }
+
         public CellState CellState
         {
             get { return state; }
             set { state = value; }
         }
 
+        /// <summary>
+        ///     Checks for the presence of a chip in current cell
+        /// </summary>
+        /// <param name="piece">checkable chip</param>
+        /// <returns>true == 'current cell contains piece'</returns>
         public bool ContainsPiece(IGridCell piece)
         {
             if (Piece == null || piece.Piece == null)
@@ -49,6 +56,9 @@ namespace Domain
             dragging = true;
         }
 
+        /// <summary>
+        ///     Move piece when dragging
+        /// </summary>
         void OnMouseDrag()
         {
             Vector3 distance = Input.mousePosition - lastMousePosition;

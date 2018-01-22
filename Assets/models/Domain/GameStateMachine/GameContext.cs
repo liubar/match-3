@@ -18,6 +18,9 @@ namespace Domain
             State = new GenerationGridState();
         }
 
+        /// <summary>
+        ///     Singleton instance
+        /// </summary>
         public static GameContext Instance
         {
             get
@@ -29,6 +32,13 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        ///     Init GameContext
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="matchChecker"></param>
+        /// <param name="pieceGenerator"></param>
+        /// <param name="player"></param>
         public void Initialize(IGrid grid, IMatchChecker matchChecker, IPieceGenerator pieceGenerator, Player player)
         {
             this.grid = grid;

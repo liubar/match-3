@@ -7,6 +7,13 @@
         private int _gridWidth;
         private int _gridHeigth;
 
+        /// <summary>
+        ///     ctor
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="generator"></param>
+        /// <param name="gridWidth"></param>
+        /// <param name="gridHeigth"></param>
         public GridInitializer(IGridBuilder builder, IPieceGenerator generator, int gridWidth, int gridHeigth)
         {
             _builder = builder;
@@ -15,6 +22,9 @@
             _gridHeigth = gridHeigth;
         }
 
+        /// <summary>
+        ///     Build and filling all cells (grid cells, spawn cells)
+        /// </summary>
         public void Build()
         {
             _builder.LoadPrefabs();

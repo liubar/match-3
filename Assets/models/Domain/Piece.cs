@@ -13,6 +13,9 @@ namespace Domain
             get { return type; }
         }
         
+        /// <summary>
+        ///     Destroy piece gameObject
+        /// </summary>
         public void Clear()
         {
             if(!_isDisposed)

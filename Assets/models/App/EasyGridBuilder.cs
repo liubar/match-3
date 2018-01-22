@@ -12,12 +12,20 @@ namespace App
         private GameObject _spawnCellPrefab;
         private IGrid _grid;
 
+        /// <summary>
+        ///     Initialize cell and spawnCell prefabs
+        /// </summary>
         public void LoadPrefabs()
         {
             _cellPrefab = Resources.Load<GameObject>(_cellPath);
             _spawnCellPrefab = Resources.Load<GameObject>(_spawnCellPath);
         }
 
+        /// <summary>
+        ///     Creating and filling all grid cells
+        /// </summary>
+        /// <param name="x">grid width</param>
+        /// <param name="y">grid heigth</param>
         public void InitialGrid(int x, int y)
         {
             _grid = new Domain.Grid();
@@ -47,11 +55,19 @@ namespace App
             }
         }
 
+        /// <summary>
+        ///     Filling all cells
+        /// </summary>
+        /// <param name="generator"></param>
         public void FillingGrid(IPieceGenerator generator)
         {
             generator.GenerateGrid(_grid);
         }
 
+        /// <summary>
+        ///     Generate all spawn cells
+        /// </summary>
+        /// <param name="generator"></param>
         public void GenerateSpawnCells(IPieceGenerator generator)
         {
             for (int i = 0; i < _grid.GridCells.Length; i++)

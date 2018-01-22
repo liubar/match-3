@@ -24,6 +24,9 @@ namespace App
             //levelManager = new LevelManager();
         }
 
+        /// <summary>
+        ///     Initialize grid and state machine
+        /// </summary>
         void Start()
         {
             IGridBuilder builder = new EasyGridBuilder();
@@ -39,6 +42,11 @@ namespace App
             GameContext.Instance.Handle();
         }
 
+        /// <summary>
+        ///     basic logic of the game
+        ///     implemented using a finite state machine
+        /// </summary>
+        /// <returns>_waitingTime</returns>
         IEnumerator Handle()
         {
             _isWork = true;

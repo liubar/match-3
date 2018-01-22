@@ -19,6 +19,11 @@ namespace Domain
             context.State = new WaitingState();
         }
 
+        /// <summary>
+        ///     Swap pieces in cells
+        /// </summary>
+        /// <param name="firstCell">First cell</param>
+        /// <param name="secondCell">Second cell</param>
         private void Swap(IGridCell firstCell, IGridCell secondCell)
         {
             var f = ((MonoBehaviour)firstCell.Piece).GetComponent<Transform>();

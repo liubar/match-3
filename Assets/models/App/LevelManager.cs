@@ -1,52 +1,52 @@
-﻿//using System.Collections.Generic;
-//using Domain;
+﻿using System.Collections.Generic;
+using Domain;
 
-//namespace App
-//{
-//    public class LevelManager
-//    {
-//        private Dictionary<Player, List<ILevel>> players = new Dictionary<Player, List<ILevel>>();
-        
-//        public ILevel CurrentLevel { get; set; }
-//        public Player CurrentPlayer { get; set; }
+namespace App
+{
+    public class LevelManager
+    {
+        private Dictionary<Player, List<ILevel>> players = new Dictionary<Player, List<ILevel>>();
 
-//        public bool AddPlayer(string name)
-//        {
-//            var player = new Player(name, 0, 0);
+        public ILevel CurrentLevel { get; set; }
+        public Player CurrentPlayer { get; set; }
 
-//            if (players.ContainsKey(player))
-//            {
-//                return false;
-//            }
+        public bool AddPlayer(string name)
+        {
+            var player = new Player(name, 0, 0);
 
-//            players.Add(player, GetDefaultLevels());
+            if (players.ContainsKey(player))
+            {
+                return false;
+            }
 
-//            return true;
-//        }
+            players.Add(player, GetDefaultLevels());
 
-//        public List<ILevel> GetPlayerLevels()
-//        {
-//            return GetPlayerLevels(this.CurrentPlayer);
-//        }
+            return true;
+        }
 
-//        public List<ILevel> GetPlayerLevels(Player player)
-//        {
-//            if (!players.ContainsKey(player))
-//            {
-//                throw new KeyNotFoundException("Player \"" + player.Name + "\" is not regestered");
-//            }
+        public List<ILevel> GetPlayerLevels()
+        {
+            return GetPlayerLevels(this.CurrentPlayer);
+        }
 
-//            return players[player];
-//        }
+        public List<ILevel> GetPlayerLevels(Player player)
+        {
+            if (!players.ContainsKey(player))
+            {
+                throw new KeyNotFoundException("Player \"" + player.Name + "\" is not regestered");
+            }
 
-//        private List<ILevel> GetDefaultLevels()
-//        {
-//            return new List<ILevel>
-//            {
-//                new Level_1_1(),
-//                new Level_1_1(),
-//                new Level_1_1()
-//            };
-//        }
-//    }
-//}
+            return players[player];
+        }
+
+        private List<ILevel> GetDefaultLevels()
+        {
+            return new List<ILevel>
+            {
+                new Level_1_1(),
+                new Level_1_1(),
+                new Level_1_1()
+            };
+        }
+    }
+}
