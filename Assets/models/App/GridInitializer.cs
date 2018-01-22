@@ -28,6 +28,8 @@
         public void Build()
         {
             _builder.LoadPrefabs();
+            _builder.InitialPlatform(_gridWidth);
+            _builder.InitializeCameraPosition(_gridWidth);
             _builder.InitialGrid(_gridWidth, _gridHeigth);
             //_builder.FillingGrid(_generator);
             _builder.GenerateSpawnCells(_generator);

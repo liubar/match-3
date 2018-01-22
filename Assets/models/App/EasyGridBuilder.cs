@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Domain;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace App
     {
         private string _cellPath = "Prefabs/Cell";
         private string _spawnCellPath = "Prefabs/SpawnCell";
+        private string _platformTag = "Platform";
+        private string _mainCameraTag = "MainCamera";
         private GameObject _cellPrefab;
         private GameObject _spawnCellPrefab;
         private IGrid _grid;
@@ -19,6 +22,35 @@ namespace App
         {
             _cellPrefab = Resources.Load<GameObject>(_cellPath);
             _spawnCellPrefab = Resources.Load<GameObject>(_spawnCellPath);
+        }
+
+        /// <summary>
+        ///     Change size platform
+        /// </summary>
+        /// <param name="widthLine">count pieces in line</param>
+        public void InitialPlatform(int widthLine)
+        {
+            var platform = GameObject.FindGameObjectsWithTag(_platformTag).First();
+            var pos = platform.transform.position;
+            var scale = platform.transform.localScale;
+
+            // 0.5f -> half Piece size
+            var newPosition = new Vector3(((float)widthLine / 2) - 0.5f, pos.y, pos.z);
+            var newScale = new Vector3(widthLine + 2, scale.y, scale.z);
+
+            platform.transform.position = newPosition;
+            platform.transform.localScale = newScale;
+        }
+
+        /// <summary>
+        ///     Change position main camera
+        /// </summary>
+        /// <param name="widthLine">count pieces in line</param>
+        public void InitializeCameraPosition(int widthLine)
+        {
+            var camera = GameObject.FindGameObjectsWithTag(_mainCameraTag).First();
+            var newPosition = new Vector3(((float)widthLine / 2) - 0.5f, (float)widthLine / 2, (widthLine + 4) * -1);
+            camera.transform.position = newPosition;
         }
 
         /// <summary>

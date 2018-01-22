@@ -7,8 +7,9 @@ namespace App
     public class GameEngine : MonoBehaviour
     {
         public static Vector3 START_POINT = new Vector3(0, 0, 0);
-        public int gridWidth = 10;
-        public int gridHeigth = 10;
+        public static int gridWidth = 10;
+        public static int gridHeigth = 10;
+
         public Player player;
         //private LevelManager levelManager;
         private IBoard _board;

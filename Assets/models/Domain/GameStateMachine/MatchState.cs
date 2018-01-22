@@ -20,7 +20,11 @@ namespace Domain
             //delete finded pieces
             foreach (var gridCells in matchCells)
             {
-                gridCells.ForEach(ob => ob.Piece.Clear());
+                gridCells.ForEach(ob =>
+                {
+                    if(ob.Piece != null)
+                        ob.Piece.Clear();
+                });
             }
 
             context.State = new WaitingFillGridState();
