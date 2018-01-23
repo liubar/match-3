@@ -10,7 +10,7 @@
             }
             else
             {
-                context.pieceGenerator.GenerateGrid(context.grid);
+                context.State = new GenerationGridState();
             }
         }
     }
