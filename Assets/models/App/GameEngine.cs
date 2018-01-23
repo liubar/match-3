@@ -11,13 +11,12 @@ namespace App
         public static Vector3 START_POINT = new Vector3(0, 0, 0);
         public static int gridWidth = 10;
         public static int gridHeigth = 10;
-
         public Player player;
 
         private IPieceGenerator _generator;
         private IMatchChecker _matchChecker;
 
-        private WaitForSeconds _waitingTime = new WaitForSeconds(0.1f);
+        private WaitForSeconds _waitingTime = new WaitForSeconds(0.2f);
         private bool _isWork;
         private string _scoreTag = "Score";
         private string _pauseMenuTag = "PauseMenu";
@@ -31,6 +30,7 @@ namespace App
             var scoreObj = GameObject.FindGameObjectWithTag(_scoreTag).GetComponent<Text>();
             player.updateScore += score => scoreObj.text = string.Format("Score: {0}", score);
 
+            // Init Pause Menu
             _pauseMenu = GameObject.FindGameObjectWithTag(_pauseMenuTag);
             _pauseMenu.SetActive(false);
         }
@@ -47,7 +47,7 @@ namespace App
             var initializer = new GridInitializer(builder, _generator, gridWidth, gridHeigth);
             initializer.Build();
             var grid = builder.GetGridResult();
-            var board = new BoardDefault(grid);
+            new BoardDefault(grid);
             
             GameContext.Instance.Initialize(grid, _matchChecker, _generator, player);
             GameContext.Instance.Handle();
@@ -86,6 +86,9 @@ namespace App
                 StartCoroutine(Handle());
         }
 
+        /// <summary>
+        ///     Pause game and run pause menu
+        /// </summary>
         void Pause()
         {
             _pauseMenu.SetActive(true);
