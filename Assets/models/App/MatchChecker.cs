@@ -142,9 +142,9 @@ namespace App
         {
             var arr = grid.GridCells;
 
-            for (int y = 0; y < arr.LongLength - 1; y++)
+            for (int y = 0; y < arr.LongLength; y++)
             {
-                for (int x = 0; x < arr.Length - 1; x++)
+                for (int x = 0; x < arr.Length; x++)
                 {
                     var currentEl = arr[x][y];
 
@@ -182,9 +182,9 @@ namespace App
         {
             var arr = grid.GridCells;
 
-            for (int x = 0; x < arr.Length - 1; x++)
+            for (int x = 0; x < arr.Length; x++)
             {
-                for (int y = 0; y < arr.LongLength - 1; y++)
+                for (int y = 0; y < arr.LongLength; y++)
                 {
                     var currentEl = arr[x][y];
 
@@ -222,9 +222,9 @@ namespace App
         {
             var arr = grid.GridCells;
 
-            for (int x = 0; x < arr.Length - 1; x++)
+            for (int x = 0; x < arr.Length; x++)
             {
-                for (int y = 0; y < arr.LongLength - 1; y++)
+                for (int y = 0; y < arr.LongLength; y++)
                 {
                     /*   leftTop |    -    | rightTop
                             -    |  center |    -
