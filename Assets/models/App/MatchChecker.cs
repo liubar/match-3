@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Domain;
 
 namespace App
@@ -14,9 +13,8 @@ namespace App
         public IEnumerable<IMatch> CheckMatch(IGrid grid)
         {
             var result = new List<Match>();
-            var findingMatchs = CheckRows(grid);
-            findingMatchs.AddRange(CheckColumns(grid));
-
+            var findingMatchs = FindMatches(grid);
+            
             foreach (var par in findingMatchs)
             {
                 var isAdding = false;
@@ -79,55 +77,77 @@ namespace App
 
             return false;
         }
-
+        
         /// <summary>
-        ///     Finding all vertical matches
+        ///     Finding all matches
         /// </summary>
         /// <param name="grid">Verifiable mesh</param>
-        /// <returns>All cells participating in vertical matches</returns>
-        private List<IGridCell[]> CheckColumns(IGrid grid)
-        {
-            var arr = grid.GridCells;
-            var result = new List<IGridCell[]>();
-
-            for (int y = 0; y < arr.Length; y++)
-            {
-                for (int x = 0; x < arr.LongLength - 2; x++)
-                {
-                    if (arr[x][y].ContainsPiece(arr[x + 1][y]) && arr[x][y].ContainsPiece(arr[x + 2][y]))
-                    {
-                        result.Add(new[] { arr[x][y], arr[x + 1][y], arr[x + 2][y] });
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        ///     Finding all horizontal matches
-        /// </summary>
-        /// <param name="grid">Verifiable mesh</param>
-        /// <returns>All cells participating in horizontal matches</returns>
-        private List<IGridCell[]> CheckRows(IGrid grid)
+        /// <returns>All cells participating in matches</returns>
+        private List<IGridCell[]> FindMatches(IGrid grid)
         {
             var arr = grid.GridCells;
             var result = new List<IGridCell[]>();
 
             for (int x = 0; x < arr.Length; x++)
             {
-                for (int y = 0; y < arr.LongLength - 2; y++)
+                for (int y = 0; y < arr.LongLength; y++)
                 {
-                    if (arr[x][y].ContainsPiece(arr[x][y + 1]) && arr[x][y].ContainsPiece(arr[x][y + 2]))
+                    var currentCell = arr[x][y];
+
+                    // Check from top
+                    if (y + 2 < arr.LongLength)
                     {
-                        result.Add(new[] { arr[x][y], arr[x][y + 1], arr[x][y + 2] });
+                        var f = arr[x][y + 1];
+                        var s = arr[x][y + 2];
+
+                        if (CellComparer(currentCell, f,s))
+                        {
+                            result.Add(new[] { currentCell, f, s });
+                        }
+                    }
+
+                    // Check from bot
+                    if (y - 2 >= 0)
+                    {
+                        var f = arr[x][y - 1];
+                        var s = arr[x][y - 2];
+
+                        if (CellComparer(currentCell, f, s))
+                        {
+                            result.Add(new[] { currentCell, f, s });
+                        }
+                    }
+
+
+                    // Check from left
+                    if (x - 2 >= 0)
+                    {
+                        var f = arr[x - 1][y];
+                        var s = arr[x - 2][y];
+
+                        if (CellComparer(currentCell, f, s))
+                        {
+                            result.Add(new[] { currentCell, f, s });
+                        }
+                    }
+
+                    // Check from right
+                    if (x + 2 < arr.Length)
+                    {
+                        var f = arr[x + 1][y];
+                        var s = arr[x + 2][y];
+
+                        if (CellComparer(currentCell, f, s))
+                        {
+                            result.Add(new[] { currentCell, f, s });
+                        }
                     }
                 }
             }
 
             return result;
         }
-
+        
         private bool CellComparer(IGridCell first, IGridCell second, IGridCell third)
         {
             return first.ContainsPiece(second) && first.ContainsPiece(third);

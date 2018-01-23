@@ -9,8 +9,8 @@ namespace App
     public class GameEngine : MonoBehaviour
     {
         public static Vector3 START_POINT = new Vector3(0, 0, 0);
-        public static int gridWidth = 10;
-        public static int gridHeigth = 10;
+        public static int gridWidth = 3;
+        public static int gridHeigth = 3;
         public Player player;
 
         private IPieceGenerator _generator;
