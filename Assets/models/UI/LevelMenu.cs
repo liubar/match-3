@@ -13,7 +13,7 @@ namespace UI
         {
             GameEngine.gridWidth = gridWidth;
             GameEngine.gridHeigth = gridHeigth;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("LevelScene");
         }
     }
 }

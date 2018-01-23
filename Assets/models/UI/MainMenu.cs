@@ -7,7 +7,7 @@ namespace UI
     {
         public void StartGame()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("LevelScene");
         }
     }
 }
