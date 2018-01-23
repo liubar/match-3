@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Domain;
+using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App
 {
@@ -11,18 +13,26 @@ namespace App
         public static int gridHeigth = 10;
 
         public Player player;
-        //private LevelManager levelManager;
-        private IBoard _board;
+
         private IPieceGenerator _generator;
         private IMatchChecker _matchChecker;
 
-        private WaitForSeconds _waitingTime = new WaitForSeconds(0.3f);
-        private bool _isWork = false;
+        private WaitForSeconds _waitingTime = new WaitForSeconds(0.1f);
+        private bool _isWork;
+        private string _scoreTag = "Score";
+        private string _pauseMenuTag = "PauseMenu";
+        private GameObject _pauseMenu;
 
         void Awake()
         {
-            player = new Player("User", 0, 0);
-            //levelManager = new LevelManager();
+            player = new Player("User", 0);
+
+            // Init Score
+            var scoreObj = GameObject.FindGameObjectWithTag(_scoreTag).GetComponent<Text>();
+            player.updateScore += score => scoreObj.text = string.Format("Score: {0}", score);
+
+            _pauseMenu = GameObject.FindGameObjectWithTag(_pauseMenuTag);
+            _pauseMenu.SetActive(false);
         }
 
         /// <summary>
@@ -37,8 +47,8 @@ namespace App
             var initializer = new GridInitializer(builder, _generator, gridWidth, gridHeigth);
             initializer.Build();
             var grid = builder.GetGridResult();
-            _board = new BoardDefault(grid);
-
+            var board = new BoardDefault(grid);
+            
             GameContext.Instance.Initialize(grid, _matchChecker, _generator, player);
             GameContext.Instance.Handle();
         }
@@ -69,8 +79,17 @@ namespace App
 
         void Update()
         {
+            if(Input.GetKeyUp(KeyCode.Escape))
+                Pause();
+
             if(!_isWork)
                 StartCoroutine(Handle());
+        }
+
+        void Pause()
+        {
+            _pauseMenu.SetActive(true);
+            _pauseMenu.gameObject.GetComponent<PauseMenu>().PauseGame();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 using Domain;
 
 namespace App
@@ -12,7 +13,7 @@ namespace App
 
         public bool AddPlayer(string name)
         {
-            var player = new Player(name, 0, 0);
+            var player = new Player(name, 0);
 
             if (players.ContainsKey(player))
             {
@@ -50,3 +51,4 @@ namespace App
         }
     }
 }
+*/
