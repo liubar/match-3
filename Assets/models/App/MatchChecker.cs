@@ -238,8 +238,10 @@ namespace App
                     {
                         var leftBot = arr[x - 1][y - 1];
                         var rightBot = arr[x + 1][y - 1];
+                        var left = arr[x - 1][y];
+                        var right = arr[x + 1][y];
 
-                        if (CellComparer(center, leftBot, rightBot))
+                        if (CellComparer(center, leftBot, rightBot) || CellComparer(center, left, rightBot) || CellComparer(center, right, leftBot))
                             return true;
                     }
 
@@ -248,8 +250,10 @@ namespace App
                     {
                         var rightTop = arr[x + 1][y + 1];
                         var rightBot = arr[x + 1][y - 1];
+                        var top = arr[x][y + 1];
+                        var bot = arr[x][y - 1];
 
-                        if (CellComparer(center, rightTop, rightBot))
+                        if (CellComparer(center, rightTop, rightBot) || CellComparer(center, top, rightBot) || CellComparer(center, bot, rightTop))
                             return true;
                     }
 
@@ -258,8 +262,10 @@ namespace App
                     {
                         var leftTop = arr[x - 1][y + 1];
                         var rightTop = arr[x + 1][y + 1];
-
-                        if (CellComparer(center, leftTop, rightTop))
+                        var left = arr[x - 1][y];
+                        var right = arr[x + 1][y];
+                        
+                        if (CellComparer(center, leftTop, rightTop) || CellComparer(center, left, rightTop) || CellComparer(center, right, leftTop))
                             return true;
                     }
 
@@ -268,8 +274,10 @@ namespace App
                     {
                         var leftTop = arr[x - 1][y + 1];
                         var leftBot = arr[x - 1][y - 1];
+                        var top = arr[x][y + 1];
+                        var bot = arr[x][y - 1];
 
-                        if (CellComparer(center, leftTop, leftBot))
+                        if (CellComparer(center, leftTop, leftBot) || CellComparer(center, top, leftBot) || CellComparer(center, bot, leftTop))
                             return true;
                     }
                 }
