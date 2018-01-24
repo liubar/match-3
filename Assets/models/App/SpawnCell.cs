@@ -9,7 +9,18 @@ namespace App
         public IGridCell UpperCell { get; set; }
         public IPieceGenerator PieceGenerator { get; set; }
         public IPiece Piece { get; set; }
-        
+
+        private PieceTrigger Trigger
+        {
+            get
+            {
+                if(_trigger == null)
+                    _trigger = GetComponent<PieceTrigger>();
+                return _trigger;
+            }
+        }
+
+        private PieceTrigger _trigger; 
         private bool beingHandled = false;
         
         void Update()
@@ -29,7 +40,7 @@ namespace App
             beingHandled = true;
             yield return new WaitForSeconds(0.3f);
 
-            if (UpperCell.Piece == null)
+            if (UpperCell.Piece == null && Trigger.colider == null)
             {
                 PieceGenerator.GeneratePiece(this);
             }

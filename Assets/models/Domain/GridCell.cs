@@ -5,7 +5,7 @@ namespace Domain
     public class GridCell : MonoBehaviour, IGridCell
     {
         private CellState state = CellState.free;
-        private Collider colider;
+        private PieceTrigger _pieceTrigger;
         private bool dragging;
         private Vector3 lastMousePosition;
 
@@ -26,8 +26,12 @@ namespace Domain
         {
             get
             {
-                if (colider == null) return null;
-                return colider.GetComponent<IPiece>();
+
+                if(_pieceTrigger == null)
+                    _pieceTrigger = GetComponentInChildren<PieceTrigger>();
+
+                if (_pieceTrigger.colider == null) return null;
+                return _pieceTrigger.colider.GetComponent<IPiece>();
             }
         }
 
@@ -36,7 +40,7 @@ namespace Domain
             get { return state; }
             set { state = value; }
         }
-
+        
         /// <summary>
         ///     Checks for the presence of a chip in current cell
         /// </summary>
@@ -68,16 +72,6 @@ namespace Domain
 
             GameContext.Instance.State = new SwapState(this, distance);
             dragging = false;
-        }
-        
-        void OnTriggerStay(Collider other)
-        {
-            colider = other;
-        }
-
-        void OnTriggerExit(Collider other)
-        {
-            colider = null;
         }
     }
 }
