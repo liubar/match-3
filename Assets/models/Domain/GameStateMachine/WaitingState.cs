@@ -4,6 +4,7 @@
     {
         protected override void ChangeState(GameContext context, object[] additionalParams)
         {
+            context.moveController.Update();
         }
     }
 }

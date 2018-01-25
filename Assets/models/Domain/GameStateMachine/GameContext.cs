@@ -8,6 +8,7 @@ namespace Domain
         public IMatchChecker matchChecker;
         public IPieceGenerator pieceGenerator;
         public Player player;
+        public IMoveController moveController;
 
         private static GameContext _instance;
 
@@ -39,12 +40,14 @@ namespace Domain
         /// <param name="matchChecker"></param>
         /// <param name="pieceGenerator"></param>
         /// <param name="player"></param>
-        public void Initialize(IGrid grid, IMatchChecker matchChecker, IPieceGenerator pieceGenerator, Player player)
+        public void Initialize(IGrid grid, IMatchChecker matchChecker,
+            IPieceGenerator pieceGenerator, Player player, IMoveController moveController)
         {
             this.grid = grid;
             this.matchChecker = matchChecker;
             this.pieceGenerator = pieceGenerator;
             this.player = player;
+            this.moveController = moveController;
         }
 
         public void Handle(object[] additionalParams = null)

@@ -40,6 +40,15 @@ namespace App
         /// </summary>
         void Start()
         {
+#if UNITY_STANDALONE
+
+            IMoveController moveController = new ClickMoveController();
+#endif
+
+#if UNITY_ANDROID
+            IMoveController moveController = new TouchMoveController();
+#endif
+
             IGridBuilder builder = new EasyGridBuilder();
             _generator = new PieceGenerator();
             _matchChecker = new MatchChecker();
@@ -48,8 +57,8 @@ namespace App
             initializer.Build();
             var grid = builder.GetGridResult();
             new BoardDefault(grid);
-            
-            GameContext.Instance.Initialize(grid, _matchChecker, _generator, player);
+
+            GameContext.Instance.Initialize(grid, _matchChecker, _generator, player, moveController);
             GameContext.Instance.Handle();
         }
 
@@ -63,13 +72,15 @@ namespace App
             _isWork = true;
             while (true)
             {
+                // States operating without delay
                 if (GameContext.Instance.State is SwapState ||
-                    GameContext.Instance.State is UndoSwapState)
+                    GameContext.Instance.State is UndoSwapState ||
+                    GameContext.Instance.State is WaitingState)
                 {
                     GameContext.Instance.Handle();
                     break;
                 }
-                
+
                 yield return _waitingTime;
                 GameContext.Instance.Handle();
             }

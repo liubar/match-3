@@ -54,6 +54,11 @@ namespace Domain
             return Piece.Equals(piece.Piece);
         }
 
+        public void MovePiece(Vector3 direction)
+        {
+            GameContext.Instance.State = new SwapState(this, direction);
+        }
+
         void OnMouseDown()
         {
             lastMousePosition = Input.mousePosition;
@@ -70,7 +75,7 @@ namespace Domain
             if (!dragging || dragging && distance.magnitude < 20) return;
             if (Piece == null) return;
 
-            GameContext.Instance.State = new SwapState(this, distance);
+            MovePiece(distance);
             dragging = false;
         }
     }

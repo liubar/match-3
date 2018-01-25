@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using UnityEngine;
+
+namespace Domain
 {
     public interface IGridCell : ICell
     {
@@ -6,5 +8,6 @@
         CellState CellState { get; set; }
         bool IsEmpty { get; }
         bool ContainsPiece(IGridCell piece);
+        void MovePiece(Vector3 direction);
     }
 }
